@@ -74,7 +74,12 @@ def fast_gradient_method(
     x = x.clone().detach().to(torch.float).requires_grad_(True)
     if y is None:
         # Using model predictions as ground truth to avoid label leaking
-        _, y = torch.max(model_fn(x), 1)
+        out = model_fn(x)
+        if isinstance(out, tuple):
+            # If model_fn returns a tuple, use the first element
+            use_out = out[0]
+            out = use_out
+        _, y = torch.max(model_fn(out), 1)
 
     # Compute loss
     loss_fn = torch.nn.CrossEntropyLoss()
