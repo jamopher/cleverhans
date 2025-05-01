@@ -4,7 +4,7 @@ from setuptools import setup
 setup(
     name="cleverhans",
     version="4.0.0",
-    url="https://github.com/cleverhans-lab/cleverhans",
+    url="https://github.com/jamopher/cleverhans",
     license="MIT",
     install_requires=[
         "nose",
