@@ -77,7 +77,7 @@ def fast_gradient_method(
         out = model_fn(x)
         if isinstance(out, tuple):
             # If model_fn returns a tuple, use the first element
-            use_out = out[0]
+            use_out = torch.stack(out[0], out[1])
             out = use_out
         _, y = torch.max(model_fn(out), 1)
 
